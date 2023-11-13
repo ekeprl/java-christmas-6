@@ -22,6 +22,9 @@ public class Rule {
     public static final String BADGE_MIN_MESSAGE = "별";
     public static final String BADGE_MID_MESSAGE = "트리";
     public static final String BADGE_MAX_MESSAGE = "산타";
+    public static final String WEEKDAYS_MESSAGE = "평일";
+    public static final String WEEKEND_MESSAGE = "주말";
+
 
     //메시지(INPUT)
     public static final String FIRSTINPUT_MESSAGE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
@@ -31,11 +34,16 @@ public class Rule {
     //메시지(OUTPUT)
     public static final String BASIC_MESSAGE = " 안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
     public static final String DATE_MESSAGE = "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
-    public static final String MENU_MESSAGE = " + %d개";
-    public static final String BEFORESALE_MESSAGE = "당첨 통계";
-    public static final String BONUSMATCH_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    public static final String MATCH_MESSAGE = "%d개 일치 (%s원) - %d개";
-    public static final String RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    public static final String ORDER_MESSAGE = "<주문 메뉴>";
+    public static final String ORIGINALPRICE_MESSAGE = "<주문 메뉴>";
+    public static final String SERVICE_MESSAGE = "<할인 전 총주문 금액>";
+    public static final String ALLSALE_MESSAGE = "<증정 메뉴>";
+    public static final String AFTERSALE_MESSAGE = "<혜택 내역>";
+    public static final String WILLPAY_MESSAGE = "<할인 후 예상 결제 금액>";
+    public static final String BADGE_MESSAGE = "<12월 이벤트 배지>";
+
+
+
 
 
     //에러
