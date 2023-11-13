@@ -1,10 +1,24 @@
 package christmas.Model;
 
-public class Sale {
-    private final int Sale;
+import java.util.List;
 
-    public Sale(Menu menu, Sale sale) {
-        this.Sale = (getAllPrice())
+public class Sale {
+    private final int totalSale;
+
+    public Sale(List<Menu> Menus) {
+        this.totalSale = calcTotalSale(Menus);
     }
 
+    private int calcTotalSale(List<Menu> Menus) {
+      int result = 0;
+
+      for(Menu menu : Menus) {
+          result += menu.getPrice();
+      }
+      return result;
+    }
+
+    public int getTotalSale() {
+        return totalSale;
+    }
 }
