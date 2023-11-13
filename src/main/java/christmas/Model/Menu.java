@@ -1,5 +1,8 @@
 package christmas.Model;
 
+import christmas.Util.Rule;
+
+
 public enum Menu {
         // 애피타이저
         MUSHROOM_SOUP("양송이수프", 6_000, Category.APPETIZER),
@@ -25,6 +28,7 @@ public enum Menu {
         private final int price;
         private final Category category;
 
+
         Menu(String name, int price, Category category) {
             this.name = name;
             this.price = price;
@@ -38,8 +42,21 @@ public enum Menu {
         public int getPrice() {
             return price;
         }
+
         public Category getCategory() {
             return category;
+        }
+
+
+        public static Menu getMenu(final String inputValue){
+            if(!inputValue.equals("")){
+                for(Menu menu : values()){
+                    if(menu.getName().equals(inputValue)){
+                        return menu;
+                    }
+                }
+            }
+            throw new IllegalArgumentException(Rule.MENUINPUT_ERROR);
         }
     }
 
