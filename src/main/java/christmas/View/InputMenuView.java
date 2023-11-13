@@ -2,14 +2,20 @@ package christmas.View;
 
 import christmas.Util.Rule;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class InputMenuView extends InputView{
 
-    public String getValue() {
+    public List<String> getValue() {
         System.out.println(Rule.SECONDINPUT_MESSAGE);
         String result = inputValue();
         System.out.println();
         validate(result);
-        return result;
+        return Stream.of(result.split(","))
+                .map(String::toString)
+                .collect(Collectors.toList());
     }
     private void validate(String inputValue) {
         validateFormat(inputValue);
