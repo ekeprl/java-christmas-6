@@ -1,9 +1,7 @@
 package christmas.Controller;
 
-import christmas.Model.Date;
-import christmas.Model.Menu;
-import christmas.Model.Order;
-import christmas.Model.Sale;
+import christmas.Model.*;
+import christmas.Util.Weekdays;
 import christmas.View.InputDateView;
 import christmas.View.InputMenuView;
 
@@ -21,11 +19,17 @@ public class ChristmasController {
         Date date = getDate();
         printDate(date);
 
+        Weekdays weekdays = getWeek();
+
+
         List<Order> menu = getMenu();
         printMenu(menu);
 
-        Sale sale = getSale();
-        printSale(sale);
+        SaleBefore saleBefore = getSaleBefore();
+        printbeforeSale(saleBefore);
+
+        SaleBasic saleBasic = getSaleBasic();
+        printSale(saleBasic);
 
 
     }
@@ -34,6 +38,15 @@ public class ChristmasController {
         InputDateView inputDateView = new InputDateView();
         int date = inputDateView.getValue();
         return new Date(date);
+    }
+
+    private Weekdays getWeek() {
+        InputDateView inputDateView = new InputDateView();
+        int date = inputDateView.getValue();
+        Weekdays weekdays = new Weekdays();
+        weekdays.isWeekday(date);
+        return weekdays;
+
     }
 
     private List<Order> getMenu() {
@@ -48,8 +61,14 @@ public class ChristmasController {
         return menuList;
     }
 
-    private Sale getSale(List<Menu> Menus) {
-        totalSale = Sale.get
+    private SaleBefore getSaleBefore() {
 
     }
+
+    private getSaleBasic getSaleBasic() {
+
+    }
+
+
+
 }
