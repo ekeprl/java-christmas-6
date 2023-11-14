@@ -6,7 +6,7 @@ public class Rule {
     public static final int DATEZERO = 0;
     public static final int MIN_DATE = 1;
     public static final int MAX_DATE = 31;
-    public static final int NORMAL_SALE = 2023;
+    public static final int WEEKDAYS_SALE = 2023;
     public static final int WEEKEND_SALE = 2023;
     public static final int DAY_INCREASEMONEY = 100;
     public static final int BASIC_SALEMONEY = 1000;
@@ -19,6 +19,8 @@ public class Rule {
     public static final Pattern DATENumberPattern = Pattern.compile("^[1-9][0-9]*$");
     public static final Pattern NUMBER_PATTERN = Pattern.compile("\\d+");
     public static final Pattern MENU_PATTERN = Pattern.compile("([\\w\\s]+)-(\\d+)(?:,\\s*)?");
+
+    //뱃지
     public static final String BADGE_MIN_MESSAGE = "별";
     public static final String BADGE_MID_MESSAGE = "트리";
     public static final String BADGE_MAX_MESSAGE = "산타";
