@@ -1,7 +1,4 @@
 package christmas.Model;
 
-
-public class Orders {
-
-
+public class Star {
 }

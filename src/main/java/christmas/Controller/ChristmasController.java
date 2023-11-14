@@ -1,21 +1,23 @@
 package christmas.Controller;
 
 import christmas.Model.*;
+import christmas.Util.Rule;
 import christmas.Util.Weekdays;
 import christmas.View.InputDateView;
 import christmas.View.InputMenuView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static christmas.View.OuputSaleView.printSale;
 import static christmas.View.OutputDateView.printDate;
 import static christmas.View.OutputMenuView.printMenu;
+import static christmas.View.OutputSalBefore.printbeforeSale;
+import static christmas.View.OutputSaleWithoutView.printbeforeSale;
 
 public class ChristmasController {
 
-    public void run(){
+    public void run() {
         Date date = getDate();
         printDate(date);
 
@@ -25,6 +27,8 @@ public class ChristmasController {
         List<Order> menu = getMenu();
         printMenu(menu);
 
+        Order order = new Order();
+
         SaleBefore saleBefore = getSaleBefore();
         printbeforeSale(saleBefore);
 
@@ -33,6 +37,8 @@ public class ChristmasController {
 
 
     }
+
+
 
     private Date getDate() {
         InputDateView inputDateView = new InputDateView();
@@ -61,14 +67,18 @@ public class ChristmasController {
         return menuList;
     }
 
-    private SaleBefore getSaleBefore() {
-
+    private int getSaleBefore(Order order, SaleBasic saleBasic) {
+        Menu menu = order.getMenu();
+        InputDateView inputDateView = new InputDateView();
+        int date = inputDateView.getValue();
+        if(date > Rule.END_DATE) {
+           return menu.getPrice() * order.getCount() ;
+        }
+        return (menu.getPrice() * order.getCount()) - saleBasic.calcSaleForDay(date) ;
     }
 
-    private getSaleBasic getSaleBasic() {
-
+    private getSaleBasic getSaleBasic(Order order) {
+        Menu menu = order.getMenu();
     }
-
-
 
 }

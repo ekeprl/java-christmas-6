@@ -6,6 +6,7 @@ public class Rule {
     public static final int DATEZERO = 0;
     public static final int MIN_DATE = 1;
     public static final int MAX_DATE = 31;
+    public static final int END_DATE = 25;
     public static final int WEEKDAYS_SALE = 2023;
     public static final int WEEKEND_SALE = 2023;
     public static final int DAY_INCREASEMONEY = 100;
@@ -31,8 +32,7 @@ public class Rule {
     //메시지(INPUT)
     public static final String FIRSTINPUT_MESSAGE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";
     public static final String SECONDINPUT_MESSAGE = "주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)";
-
-
+    public static final String NOTHING_MESSAGE ="없음";
     //메시지(OUTPUT)
     public static final String BASIC_MESSAGE = " 안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
     public static final String DATE_MESSAGE = "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
