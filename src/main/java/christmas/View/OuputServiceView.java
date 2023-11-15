@@ -9,7 +9,7 @@ public class OuputServiceView {
         System.out.println(Rule.ALLSALE_MESSAGE);
         String gift = "없음";
         if (sum > Rule.SERVICE_MIN) {
-            gift = Menu.CHAMPAGNE.getName() + "1개";
+            gift = Menu.CHAMPAGNE.getName() + " 1개";
         }
         System.out.println(gift);
     }
