@@ -18,8 +18,16 @@ public class InputMenuView extends InputView{
                 .collect(Collectors.toList());
     }
     private void validate(String inputValue) {
-        validateFormat(inputValue);
+        if(inputValue.contains(",")) {
+
+            for(String value : inputValue.split(",")) {
+                validateFormat(value);
+            }
+        } else {
+            validateFormat(inputValue);
+        }
     }
+
 
     private void validateFormat(String inputValue) {
         if(!Rule.MENU_PATTERN.matcher(inputValue).matches()) {

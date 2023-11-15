@@ -2,14 +2,12 @@ package christmas.View;
 
 import christmas.Model.Menu;
 import christmas.Model.SaleBefore;
+import christmas.Util.Rule;
 
 public class OutputSalBefore {
 
     private int noSale;
-    public static void printbeforeSale(SaleBefore order) {
-        Menu menu = order.getMenu();
-        int noSale = menu.getPrice() * order.getCount();
-
-        System.out.println(noSale + "원");
+    public static void printSale(int noSale) {
+                System.out.println(Rule.SERVICE_MESSAGE + "\n" + noSale + "원");
     }
 }

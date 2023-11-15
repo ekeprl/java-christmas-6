@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Weekdays {
     private final int YEAR = 2023;
-    private final Month MONTH = Month.DECEMBER;
+    private final int MONTH = 12;
 
     public static Weekdays instance;
     public static Weekdays getInstance(){
@@ -24,15 +24,12 @@ public class Weekdays {
         String dayStr = String.format("%02d", day);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd");
-        LocalDate date = LocalDate.parse(YEAR + "-" + MONTH + "-" + dayStr, formatter);
+        LocalDate date = LocalDate.parse(YEAR + "-" + MONTH + "-" + dayStr, DateTimeFormatter.ISO_DATE);
 
         DayOfWeek dayOfWeek = date.getDayOfWeek();
 
-        if (dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY) {
-            return false;
-        } else {
-            return true;
-        }
+        return dayOfWeek == DayOfWeek.FRIDAY || dayOfWeek == DayOfWeek.SATURDAY;
+
     }
 }
 

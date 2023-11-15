@@ -7,38 +7,59 @@ import christmas.View.InputDateView;
 import christmas.View.InputMenuView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static christmas.View.OuputSaleView.printSale;
+import static christmas.View.OuputSaleCountView.printDday;
+import static christmas.View.OuputSaleCountView.printSaleResult;
 import static christmas.View.OutputDateView.printDate;
 import static christmas.View.OutputMenuView.printMenu;
-import static christmas.View.OutputSalBefore.printbeforeSale;
-import static christmas.View.OutputSaleWithoutView.printbeforeSale;
+import static christmas.View.OutputSalBefore.printSale;
+import static christmas.View.OuputServiceView.printService;
+
+
 
 public class ChristmasController {
 
     public void run() {
+
+
         Date date = getDate();
         printDate(date);
 
-        Weekdays weekdays = getWeek();
+        int day = date.date;
 
+        Weekdays weekdays = Weekdays.getInstance();
+        boolean isWeekday = weekdays.isWeekday(day);
 
         List<Order> menu = getMenu();
         printMenu(menu);
 
-        Order order = new Order();
 
-        SaleBefore saleBefore = getSaleBefore();
-        printbeforeSale(saleBefore);
+        int sale = Sale.calcTotalSale(menu);
+        printSale(sale);
+        printService(sale);
 
-        SaleBasic saleBasic = getSaleBasic();
-        printSale(saleBasic);
+        int Dday = SaleBasic.calcSaleForDay(day);
+
+        int weekSale = 0;
+        for (Order order : menu) {
+            if (!isWeekday) {
+                weekSale += SaleBasic.calcWeekendSale(order) ;
+            } else {
+                weekSale += SaleBasic.calcWeekdaysSale(order) ;
+            }
+        }
+
+        boolean isSpecialDay = false;
+        int[] specialDays = {3,10,17,24,25,31};
+        if(Arrays.stream(specialDays).filter(idx -> idx == day).toArray().length > 0){
+            isSpecialDay = true;
+        };
+        printSaleResult(Dday ,weekSale,isWeekday,isSpecialDay, sale);
 
 
     }
-
-
 
     private Date getDate() {
         InputDateView inputDateView = new InputDateView();
@@ -46,20 +67,12 @@ public class ChristmasController {
         return new Date(date);
     }
 
-    private Weekdays getWeek() {
-        InputDateView inputDateView = new InputDateView();
-        int date = inputDateView.getValue();
-        Weekdays weekdays = new Weekdays();
-        weekdays.isWeekday(date);
-        return weekdays;
-
-    }
 
     private List<Order> getMenu() {
         InputMenuView inputMenuView = new InputMenuView();
         List<String> inputValue = inputMenuView.getValue();
         ArrayList<Order> menuList = new ArrayList();
-        for(String menuData : inputValue) {
+        for (String menuData : inputValue) {
             Menu menu = Menu.getMenu(menuData.split("-")[0]);
             Order order = new Order(menu, Integer.parseInt(menuData.split("-")[1]));
             menuList.add(order);
@@ -71,14 +84,11 @@ public class ChristmasController {
         Menu menu = order.getMenu();
         InputDateView inputDateView = new InputDateView();
         int date = inputDateView.getValue();
-        if(date > Rule.END_DATE) {
-           return menu.getPrice() * order.getCount() ;
+        if (date > Rule.END_DATE) {
+            return menu.getPrice() * order.getCount();
         }
-        return (menu.getPrice() * order.getCount()) - saleBasic.calcSaleForDay(date) ;
+        return (menu.getPrice() * order.getCount()) - saleBasic.calcSaleForDay(date);
     }
 
-    private getSaleBasic getSaleBasic(Order order) {
-        Menu menu = order.getMenu();
-    }
 
 }

@@ -5,30 +5,39 @@ import christmas.Util.Weekdays;
 
 public class SaleBasic {
 
-    final int Start = 1000;
+    static final int Start = 1000;
 
-    public int calcSaleForDay(int date) {
-        if(!(Rule.MIN_DATE <= date && date <= Rule.MAX_DATE)) {
-            throw new IllegalArgumentException(Rule.LOTTO_NUM_RANGE);
+    public static int calcSaleForDay(int day) {
+        if (!(Rule.MIN_DATE <= day && day <= Rule.MAX_DATE)) {
+            throw new IllegalArgumentException(Rule.DATE_RANGE);
         }
-        return Start + (date - 1) * 100;
+        return Start + (day - 1) * 100;
     }
 
-    public int calcWeekdaysSale(int dd, Order order) {
+   /* public boolean calcStar(int date) {
         Weekdays weekdays = Weekdays.getInstance();
+        if(weekdays.isWeekday() == )
+    }*/
+
+    /**
+     * 평일 할인 계산
+     */
+    public static int calcWeekdaysSale(Order order) {
         Menu menu = order.getMenu();
-        if(weekdays.isWeekday(dd)) {
-            if(menu.getCategory() == Category.DESSERT) {
-                return (menu.getPrice() - Rule.WEEKDAYS_SALE) * order.getCount();
-            } else {
-                return (menu.getPrice()) * order.getCount();
-            }
-        } else {
-            if(menu.getCategory() == Category.MAIN){
-                return (menu.getPrice() - Rule.WEEKEND_SALE) * order.getCount();
-            } else {
-                return (menu.getPrice()) * order.getCount();
-            }
+        if (menu.getCategory() == Category.DESSERT) {
+            return (menu.getPrice() - Rule.WEEKDAYS_SALE) * order.getCount();
         }
+        return (menu.getPrice()) * order.getCount();
+    }
+
+    /**
+     * 주말 할인 계산
+     */
+    public static int calcWeekendSale(Order order) {
+        Menu menu = order.getMenu();
+        if (menu.getCategory() == Category.MAIN) {
+            return (menu.getPrice() - Rule.WEEKEND_SALE) * order.getCount();
+        }
+        return (menu.getPrice()) * order.getCount();
     }
 }
