@@ -3,7 +3,7 @@ package christmas.Model;
 import java.util.List;
 
 public class Sale {
-    private final int totalSale;
+    private static int totalSale = 0;
 
     public Sale(List<Order> Menus) {
         this.totalSale = calcTotalSale(Menus);
@@ -18,7 +18,8 @@ public class Sale {
       return result;
     }
 
-    public int getTotalSale() {
+    public static int getTotalSale() {
         return totalSale;
     }
+
 }
