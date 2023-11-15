@@ -1,7 +1,6 @@
 package christmas.Model;
 
 import christmas.Util.Rule;
-import christmas.Util.Weekdays;
 
 public class SaleBasic {
 
@@ -25,9 +24,9 @@ public class SaleBasic {
     public static int calcWeekdaysSale(Order order) {
         Menu menu = order.getMenu();
         if (menu.getCategory() == Category.DESSERT) {
-            return (menu.getPrice() - Rule.WEEKDAYS_SALE) * order.getCount();
+            return (Rule.WEEKDAYS_SALE) * order.getCount();
         }
-        return (menu.getPrice()) * order.getCount();
+        return 0;
     }
 
     /**
@@ -36,8 +35,8 @@ public class SaleBasic {
     public static int calcWeekendSale(Order order) {
         Menu menu = order.getMenu();
         if (menu.getCategory() == Category.MAIN) {
-            return (menu.getPrice() - Rule.WEEKEND_SALE) * order.getCount();
+            return (Rule.WEEKEND_SALE) * order.getCount();
         }
-        return (menu.getPrice()) * order.getCount();
+        return 0;
     }
 }
