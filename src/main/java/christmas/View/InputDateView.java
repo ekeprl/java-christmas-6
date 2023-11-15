@@ -2,9 +2,10 @@ package christmas.View;
 
 import christmas.Util.Rule;
 
-public class InputDateView extends InputView{
+public class InputDateView extends InputView {
 
     public Integer getValue() {
+        System.out.println(Rule.BASIC_MESSAGE);
         System.out.println(Rule.FIRSTINPUT_MESSAGE);
         String result = inputValue();
         System.out.println();
@@ -17,8 +18,8 @@ public class InputDateView extends InputView{
     }
 
     private void validateFormat(String inputValue) {
-        if(!Rule.NUMBER_PATTERN.matcher(inputValue).matches()) {
-            throw new IllegalArgumentException(Rule.WRONGNUM_ERROR);
+        if (!Rule.NUMBER_PATTERN.matcher(inputValue).matches()) {
+            throw new IllegalArgumentException(Rule.DATERANGE_ERROR);
         }
     }
 
