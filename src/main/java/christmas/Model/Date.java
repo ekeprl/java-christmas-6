@@ -9,6 +9,7 @@ public class Date {
         validate(date);
         this.date = date;
     }
+
     private void validate(int inputValue) {
         validateRange(inputValue);
         validateZero(inputValue);
@@ -21,12 +22,12 @@ public class Date {
     }
 
     private void validateZero(int inputValue) {
-        if(inputValue == Rule.DATEZERO) {
+        if (inputValue == Rule.DATEZERO) {
             throw new IllegalArgumentException(Rule.DATEZERO_PATTERN);
         }
     }
 
-    public int getDate(){
+    public int getDate() {
         return date;
     }
 }
